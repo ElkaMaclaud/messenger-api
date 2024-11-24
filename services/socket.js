@@ -11,7 +11,7 @@ export const activeSockets = {}
 export const createSocketServer = (httpServer) => {
     const io = new Server(httpServer, {
         cors: {
-            origin: ["*"], //  "http://localhost:3000"
+            origin: [process.env.PERMITTED_SOURCES], //  "http://localhost:3000"
             methods: ["GET", "POST"],
             allowedHeaders: ["Authorization", "Content-Type"],
             credentials: true
@@ -53,7 +53,7 @@ export const createSocketServer = (httpServer) => {
             console.log(`Сообщение прочитано: ${messageId} пользователем ${socket.userId}`);
 
             try {
-                await Message.findByIdAndUpdate(messageId, { status: "read" });
+                await Message.findByIdAndUpdate(messageId, { status: "read", readBy: socket.userId });
                 io.to(chatId).emit("message status updated", {
                     messageId,
                     status: "read",

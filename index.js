@@ -18,8 +18,6 @@ app.use("/api/user", userRouter)
 const start = (async () => {
     try {
         await mongoose.connect(`mongodb+srv://${process.env.MONGO_LOGIN}:${process.env.MONGO_PASSWORD}@cluster0.m5tsd.mongodb.net/messenger-api`)
-        // const goodService = new GoodService()
-        // await goodService.writeDataToBD()
 
         const server = app.listen(PORT, () => console.log(`Сервер запущен на порте ${PORT}`))
         createSocketServer(server)
