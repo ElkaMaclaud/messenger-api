@@ -16,10 +16,11 @@
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.3",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
   },
   "type": "module",
-   "engines": {
+  "engines": {
     "node": ">=16.0.0"
   }
 }
